@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 --1
 select product_name,quantity_per_unit from products
 --2
@@ -69,4 +70,77 @@ and p.unit_price = (select max(unit_price) from products)
 select p.product_name, c.category_name, s.company_name
 from products as p, categories as c, suppliers as s   
 where p.category_id = c.category_id and s.supplier_id = p.supplier_id
+=======
+--1
+select product_name,quantity_per_unit from products
+--2
+select product_id,product_name from products 
+where discontinued = 1
+--3
+select product_id,product_name from products 
+where discontinued = 0 
+--4
+select product_id,product_name,unit_price from products 
+where unit_price < 20
+--5
+select product_id,product_name,unit_price from products 
+where unit_price between 15 and 25 
+--6
+select product_name,units_on_order,units_in_stock from products 
+where units_on_order > units_in_stock
+--7
+select * from products where product_name like 'A%'
+select * from products where lower (product_name) like 'a%'
+--8
+select * from products where product_name like '%i'
+--9
+SELECT product_name, unit_price,(unit_price+unit_price * 0.18) AS unit_price_KDV 
+FROM products 
+--10
+select count (*) from products 
+where unit_price > 30
+--11
+select lower(product_name),unit_price from 
+products order by unit_price desc 
+--12
+select first_name || ' ' || last_name as fullname from employees
+--13
+select count (*) from suppliers where region is null
+--14
+select count (*) from suppliers where region is not null
+--15
+select 'TR' || upper (product_name) from products
+--16
+SELECT CONCAT('TR', product_name ) AS urun_kodu FROM products where unit_price <20 ;
+--17
+select product_name, unit_price FROM products where unit_price = (select max (unit_price) from products)
+--18
+select product_name, unit_price FROM products order by unit_price desc limit 10
+--19
+select product_name, unit_price FROM products where unit_price > (select avg (unit_price) from products)
+--20
+select sum (unit_price * units_in_stock) as toplam from products
+--21
+SELECT
+    COUNT(*) - SUM(discontinued) AS Mevcut_Urun_Sayisi,
+    SUM(discontinued) AS Durdurulan_Urun_Sayisi
+FROM
+    products
+--22
+select products.product_name , categories.category_name from  products, categories 
+where products.category_id = categories.category_id
+--23
+SELECT category_id, AVG(unit_price) AS AvgPrice
+FROM products
+GROUP BY category_id;
+--24
+select p.product_name, p.unit_price, c.category_name
+from products as p, categories as c
+where p.category_id = c.category_id 
+and p.unit_price = (select max(unit_price) from products)
+--25
+select p.product_name, c.category_name, s.company_name
+from products as p, categories as c, suppliers as s   
+where p.category_id = c.category_id and s.supplier_id = p.supplier_id
+>>>>>>> 9c07ef1865dda5197767c43d22031d01389bd522
 and p.reorder_level = (select max(reorder_level) from products)limit 1
