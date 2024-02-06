@@ -1,0 +1,197 @@
+--1
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Sipariş numarasını girin: ");
+        int siparisNo = scanner.nextInt();
+
+        String urun;
+
+        switch (siparisNo) {
+            case 1:
+                urun = "Bilgisayar";
+                break;
+            case 2:
+                urun = "Telefon";
+                break;
+            case 3:
+                urun = "Tablet";
+                break;
+            default:
+                urun = "Geçersiz sipariş numarası";
+                break;
+        }
+
+        System.out.println("Sipariş edilen ürün: " + urun);
+    }
+}
+
+
+--2
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Kaç ürün almak istiyorsunuz? ");
+        int urunSayisi = scanner.nextInt();
+
+        double toplamTutar = 0;
+
+        for (int i = 1; i <= urunSayisi; i++) {
+            System.out.print(i + ". ürünün fiyatını girin: ");
+            double urunFiyati = scanner.nextDouble();
+            toplamTutar += urunFiyati;
+        }
+
+        System.out.println("Toplam alışveriş tutarı: " + toplamTutar + " TL");
+    }
+}
+
+
+--3
+-Do-While ve While döngüleri: Java'da tekrarlayıcı (loop) yapılarını oluşturmak için kullanılır.
+
+ While döngüsü: While döngüsü, belirli bir koşul doğru olduğu sürece döngüyü çalıştırmaya devam eder, 
+ döngü adımı öncesinde koşul kontrol edilir ve koşul doğru ise döngü bloğu çalıştırılır , 
+ koşul yanlış olduğunda döngü sona erer.
+
+Örnek:
+
+int i = 1;
+while (i <= 5) {
+    System.out.println(i);
+    i++;
+}
+
+Bu örnekte, i değişkeni 1'den başlayarak 5'e kadar olan sayıları ekrana yazdıracaktır.
+
+-Do-While döngüsü: Do-While döngüsü, döngü bloğunu en az bir kez çalıştırmak istediğimiz durumlarda kullanılır, 
+ döngü bloğu çalıştırıldıktan sonra koşul kontrol edilir ve koşul doğru ise döngü tekrarlanır
+
+Örnek:
+
+int i = 1;
+do {
+    System.out.println(i);
+    i++;
+} while (i <= 5);
+
+Bu örnekte, i değişkeni 1'den başlayarak 5'e kadar olan sayıları ekrana yazdıracaktır, 
+ilk olarak döngü bloğu çalıştırıldıktan sonra koşul kontrol edilir.
+
+--4
+
+import java.util.Scanner;
+import java.util.Random;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+
+        int rastgeleSayi = random.nextInt(10) + 1; // 1 ile 10 arasında rastgele sayı üretir
+        int tahmin = 0;
+
+        while (tahmin != rastgeleSayi) {
+            System.out.print("1 ile 10 arasında bir sayı tahmin edin: ");
+            tahmin = scanner.nextInt();
+
+            if (tahmin < rastgeleSayi) {
+                System.out.println("Daha büyük bir sayı tahmin edin.");
+            } else if (tahmin > rastgeleSayi) {
+                System.out.println("Daha küçük bir sayı tahmin edin.");
+            } else {
+                System.out.println("Tebrikler, doğru tahmin! Sayı: " + rastgeleSayi);
+            }
+        }
+    }
+}
+
+--5
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Bir sayı girin: ");
+        int sayi = scanner.nextInt();
+
+        int toplam = 0;
+        for (int i = 1; i < sayi; i++) {
+            if (sayi % i == 0) {
+                toplam += i;
+            }
+        }
+
+        if (toplam == sayi) {
+            System.out.println(sayi + " mükemmel bir sayıdır.");
+        } else {
+            System.out.println(sayi + " mükemmel bir sayı değildir.");
+        }
+    }
+}
+
+--6
+
+ -String sınıfı: java.lang kütüphanesinin altında bulunan ve bizlere karakter dizeleri üzerinde işlemler gerçekleştirmemizi kolaylaştıran bir imkan sağlar. 
+  String sınıfı metotları, immutable metotlardır. 
+  Yani bu sınıfın içerisinde bulunan metotlar değiştirilemez. 
+  String sınıfı miras alınarak, yeni bir sınıf türetilmez.
+  
+  -length(): String'in uzunluğunu döndürür.
+    String kelime = "Merhaba";
+    int uzunluk = kelime.<link>length()<; // uzunluk şimdi 7 olacak
+  
+  -toLowerCase() ve toUpperCase(): String'i küçük harfe veya büyük harfe dönüştürür.
+    String kelime = "Merhaba";
+    String kucukHarf = kelime.<link>toLowerCase(); // kucukHarf şimdi "merhaba" olacak
+    String buyukHarf = kelime.<link>toUpperCase(); // buyukHarf şimdi "MERHABA" olacak
+
+   -charAt(): Belirtilen dizindeki karakteri döndürür.
+     String kelime = "Merhaba";
+     char karakter = kelime.<link>charAt(); // karakter şimdi 'e' olacak (diziler 0'dan başlar!)
+
+   -substring(): Belirtilen konumlar arasındaki alt dizesini döndürür.
+     String kelime = "Merhaba";
+     String altKelime = kelime.<link>substring(); // altKelime şimdi "aba" olacak
+
+   -indexOf() ve lastIndexOf(): Belirli bir karakterin veya alt dizenin konumunu döndürür.
+     String kelime = "Merhaba";
+     int konum = kelime.<link>indexOf(); // konum şimdi 2 olacak
+     int sonKonum = kelime.<link>lastIndexOf(); // sonKonum şimdi 5 olacak
+
+--7
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Öğrenci sayısını girin: ");
+        int ogrenciSayisi = scanner.nextInt();
+
+        for (int i = 1; i <= ogrenciSayisi; i++) {
+            System.out.println("Öğrenci " + i + " bilgilerini girin:");
+            System.out.print("Öğrenci adı: ");
+            String ad = scanner.next();
+            System.out.print("Öğrenci soyadı: ");
+            String soyad = scanner.next();
+            System.out.print("1. sınav notu: ");
+            int not1 = scanner.nextInt();
+            System.out.print("2. sınav notu: ");
+            int not2 = scanner.nextInt();
+            System.out.print("3. sınav notu: ");
+            int not3 = scanner.nextInt();
+
+            double ortalama = (not1 + not2 + not3) / 3.0;
+            System.out.println(ad + " " + soyad + " adlı öğrencinin not ortalaması: " + ortalama);
+        }
+    }
+}
+
